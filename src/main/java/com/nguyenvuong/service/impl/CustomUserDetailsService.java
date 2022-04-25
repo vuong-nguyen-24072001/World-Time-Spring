@@ -16,7 +16,6 @@ import com.nguyenvuong.dto.MyUser;
 import com.nguyenvuong.entity.RoleEntity;
 import com.nguyenvuong.entity.UserEntity;
 import com.nguyenvuong.repository.UserRepository;
-import com.nguyenvuong.service.INewService;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

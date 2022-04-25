@@ -1,0 +1,26 @@
+From tomcat:latest
+copy ./target/spring-mvc-1.0.war spring-mvc-1.0.war
+EXPOSE 8080
+CMD ["catalina.sh","run"]
+
+version: "3"
+services:
+  worldtime:
+    image: worldtime
+    ports:
+      - "8080:8080"
+    networks:
+      - worldtime-mysql
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - worldtime-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb
+
+networks:
+  worldtime-mysql:

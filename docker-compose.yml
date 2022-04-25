@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mysqldb:
+    image: mysql:8
+    ports:
+      - "3300:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=worldtime
+
+  worldtime:
+    image: vanvuong24072001/worldtime:1.0
+    ports:
+    - "8080:8080"
+    depends_on:
+    - mysqldb

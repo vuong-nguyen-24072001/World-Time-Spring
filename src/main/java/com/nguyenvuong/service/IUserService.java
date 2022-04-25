@@ -1,7 +1,6 @@
 package com.nguyenvuong.service;
 
 import com.nguyenvuong.dto.UserDTO;
-import com.nguyenvuong.entity.UserEntity;
 
 public interface IUserService {
 	

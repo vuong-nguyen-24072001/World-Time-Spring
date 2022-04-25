@@ -51,10 +51,14 @@ public class JPAConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/worldtime");
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mysql://localhost:3306/worldtime");
+//		dataSource.setUsername("root");
+//		dataSource.setPassword("vuongnguyen04040707");
+		// for deploy docker
+		dataSource.setUrl("jdbc:mysql://mysqldb:3306/worldtime");
 		dataSource.setUsername("root");
-		dataSource.setPassword("vuongnguyen04040707");
+		dataSource.setPassword("root");
 		return dataSource;
 	}
 
@@ -64,8 +68,8 @@ public class JPAConfig {
 		// table trong db,
 		// khi đã ổn định, db đã đầy đủ thì ta k cần create-drop nữa thì comment lại và
 		// để lại là none
-		// properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-		properties.setProperty("hibernate.hbm2ddl.auto", "none");
+		//properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		 properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 		return properties;
 	}

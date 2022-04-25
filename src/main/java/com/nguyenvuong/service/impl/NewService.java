@@ -30,15 +30,15 @@ public class NewService implements INewService {
 
 	@Override
 	public List<NewDTO> findAll() {
-		List<NewEntity> newEntities = newRepository.findAll();
-		return newConverter.toDto(newEntities);
+		List<NewDTO> newDtos = new ArrayList<>();
+		List<NewEntity> newEntities = newRepository.findAllByOrderByCreatedDateDesc();
+		newEntities.forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));
+		return newDtos;
 	}
 
 	@Override
 	public NewDTO findById(Long id) {
-		List<NewEntity> newEntities = new ArrayList<>();
-		newEntities.add(newRepository.findOne(id));
-		return newConverter.toDto(newEntities).get(0);
+		return newConverter.toDto(newRepository.findOne(id));
 	}
 
 //	@Override
@@ -67,8 +67,8 @@ public class NewService implements INewService {
 		if (newDto.getId() != null) {
 			newEntity.setId(newDto);
 		}
-		// return newConverter.toDto(newRepository.save(newEntity));
-		return newConverter.toDto(newEntity);
+		return newConverter.toDto(newRepository.save(newEntity));
+		// return newConverter.toDto(newEntity);
 	}
 
 	@Override
@@ -76,6 +76,20 @@ public class NewService implements INewService {
 		for (long id: ids) {
 			newRepository.delete(id);
 		}
+	}
+
+	@Override
+	public List<NewDTO> findAllByCode(String code) {
+		List<NewDTO> newDtos = new ArrayList<>();
+		categoryRepository.findOneByCode(code).getNews().forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));;
+		return newDtos;
+	}
+
+	@Override
+	public List<NewDTO> findTop3() {
+		List<NewDTO> newDtos = new ArrayList<>();
+		newRepository.findTop3ByOrderByCreatedDateDesc().forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));
+		return newDtos;
 	}
 
 }

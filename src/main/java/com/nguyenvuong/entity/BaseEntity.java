@@ -23,7 +23,7 @@ public abstract class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	protected Long id;
 	
-	@Column(name = "createddate")
+	@Column(name = "createddate", updatable = false)
 	@CreatedDate
 	private Date createdDate;
 	
@@ -31,7 +31,7 @@ public abstract class BaseEntity {
 	@LastModifiedDate
 	private Date modifiedDate;
 	
-	@Column(name = "createdby")
+	@Column(name = "createdby", updatable = false)
 	@CreatedBy
 	private String createdBy;
 	

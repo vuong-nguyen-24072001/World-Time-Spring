@@ -1,16 +1,13 @@
 package com.nguyenvuong.api.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nguyenvuong.dto.UserDTO;
 import com.nguyenvuong.service.impl.UserService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
 public class UserAPI {
 	
 	@Autowired
