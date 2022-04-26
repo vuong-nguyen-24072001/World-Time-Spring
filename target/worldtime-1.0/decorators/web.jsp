@@ -19,6 +19,9 @@
 <link rel="stylesheet"
 	href="<c:url value='/template/web/css/owl.carousel.min.css'/>">
 
+	<link rel="stylesheet"
+		  href="<c:url value='/template/web/css/pagination.css'/>">
+
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -56,6 +59,8 @@
 	<script src="<c:url value='/template/web/js/bootstrap.min.js'/>"></script>
 
 	<script src="<c:url value='/template/web/js/main.js'/>"></script>
+
+	<script src="<c:url value='/template/web/js/pagination.js'/>"></script>
 
 </body>
 </html>

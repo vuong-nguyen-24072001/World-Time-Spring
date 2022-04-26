@@ -5,7 +5,7 @@
 <c:url var="newAPI" value="/api/new" />
 <html>
 <head>
-<title>Chỉnh sửa bài viết</title>
+<title>News List</title>
 </head>
 <body>
 	<div class="main-content">

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.nguyenvuong.converter.NewConverter;
@@ -79,9 +80,10 @@ public class NewService implements INewService {
 	}
 
 	@Override
-	public List<NewDTO> findAllByCode(String code) {
+	public List<NewDTO> findAllByCode(String code, Pageable pageable) {
 		List<NewDTO> newDtos = new ArrayList<>();
-		categoryRepository.findOneByCode(code).getNews().forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));;
+		List<NewEntity> newEntities = newRepository.findByCategory(categoryRepository.findOneByCode(code), pageable).getContent();
+		newEntities.forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));
 		return newDtos;
 	}
 
@@ -89,6 +91,19 @@ public class NewService implements INewService {
 	public List<NewDTO> findTop3() {
 		List<NewDTO> newDtos = new ArrayList<>();
 		newRepository.findTop3ByOrderByCreatedDateDesc().forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));
+		return newDtos;
+	}
+
+	@Override
+	public int getTotalItem() {
+		return (int) newRepository.count();
+	}
+
+	@Override
+	public List<NewDTO> findAllPagable(Pageable pageable) {
+		List<NewDTO> newDtos = new ArrayList<>();
+		List<NewEntity> entities = newRepository.findAll(pageable).getContent();
+		entities.forEach(newEntity -> newDtos.add(newConverter.toDto(newEntity)));
 		return newDtos;
 	}
 

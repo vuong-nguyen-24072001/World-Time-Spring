@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ page import="com.nguyenvuong.util.SecurityUtil" %>
 
 <header id="header">
@@ -14,9 +14,9 @@
 						<li class="nav-item"><a href="#" class="nav-link">Events</a>
 						</li>
 						<li class="nav-item"><a href="#" class="nav-link">Write
-								for Us</a></li>
+							for Us</a></li>
 						<li class="nav-item"><a href="#" class="nav-link">In the
-								Press</a></li>
+							Press</a></li>
 					</ul>
 					<ul class="navbar-top-right-menu">
 						<li class="nav-item"><a href="#" class="nav-link"><i
@@ -26,13 +26,13 @@
 							<li class="nav-item"><a href="<c:url value='login'/>" class="nav-link">Login</a>
 							</li>
 							<li class="nav-item"><a href="<c:url value='signup'/>"
-								class="nav-link">Sign Up</a></li>
+													class="nav-link">Sign Up</a></li>
 						</security:authorize>
 						<security:authorize access="isAuthenticated()">
 							<li class="nav-item"><a href="#" class="nav-link"><%=SecurityUtil.getPrincipal().getFullName()%></a>
 							</li>
 							<li class="nav-item"><a href="<c:url value='logout'/>"
-								class="nav-link">Log out</a></li>
+													class="nav-link">Log out</a></li>
 						</security:authorize>
 					</ul>
 				</div>
@@ -40,20 +40,20 @@
 			<div class="navbar-bottom">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
-						<a class="navbar-brand" href="/worldtime-1.0/home"><img
-							src="<c:url value='/template/web/images/logo.svg'/>"> </a>
+						<a class="navbar-brand" href="/home?page=1"><img
+								src="<c:url value='/template/web/images/logo.svg'/>"> </a>
 					</div>
 					<div>
 						<button class="navbar-toggler" type="button"
-							data-target="#navbarSupportedContent"
-							aria-controls="navbarSupportedContent" aria-expanded="false"
-							aria-label="Toggle navigation">
+								data-target="#navbarSupportedContent"
+								aria-controls="navbarSupportedContent" aria-expanded="false"
+								aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="navbar-collapse justify-content-center collapse"
-							id="navbarSupportedContent">
+							 id="navbarSupportedContent">
 							<ul
-								class="navbar-nav d-lg-flex justify-content-between align-items-center">
+									class="navbar-nav d-lg-flex justify-content-between align-items-center">
 								<li>
 									<button class="navbar-close">
 										<i class="mdi mdi-close"></i>
@@ -61,12 +61,12 @@
 								</li>
 								<li class="nav-item"><a class="nav-link" href="#">MAGAZINE</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="/worldtime-1.0/home/business">Business</a>
+								<li class="nav-item"><a class="nav-link" href="/home/business?page=1">Business</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="/worldtime-1.0/home/sport">Sports</a>
+								<li class="nav-item"><a class="nav-link" href="/home/sport?page=1">Sports</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="#">Art</a></li>
-								<li class="nav-item"><a class="nav-link" href="/worldtime-1.0/home/policy">POLITICS</a>
+								<li class="nav-item"><a class="nav-link" href="/home/policy?page=1">POLITICS</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="#">Travel</a>
 								</li>

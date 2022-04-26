@@ -8,7 +8,7 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Danh sách bài viết</title>
+		<title>News List</title>
 	</head>
 
 	<body>
@@ -19,7 +19,7 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home Page</a>
+								<a href="/home?page=1">Home Page</a>
 							</li>
 						</ul>
 						<!-- /.breadcrumb -->

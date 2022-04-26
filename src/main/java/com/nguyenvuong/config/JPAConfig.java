@@ -48,17 +48,17 @@ public class JPAConfig {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://bfzw9fmmyj7bk7sqfi4t-mysql.services.clever-cloud.com:3306/bfzw9fmmyj7bk7sqfi4t");
+		dataSource.setUsername("us1ktm1ee1wa5emv");
+		dataSource.setPassword("r0uT5o6bxEICSo3BD6qA");
 //		dataSource.setUrl("jdbc:mysql://localhost:3306/worldtime");
 //		dataSource.setUsername("root");
 //		dataSource.setPassword("vuongnguyen04040707");
-		// for deploy docker
-		dataSource.setUrl("jdbc:mysql://mysqldb:3306/worldtime");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
 		return dataSource;
 	}
 

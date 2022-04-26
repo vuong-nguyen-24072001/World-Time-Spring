@@ -12,14 +12,14 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Trang chủ</a>
+                    <a href="/home?page=1">Home Page</a>
                 </li>
             </ul><!-- /.breadcrumb -->
         </div>
         <div class="page-content">
             <div class="row" >
                 <div class="col-xs-12">
-
+	
                 </div>
             </div>
         </div>

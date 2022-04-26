@@ -29,8 +29,9 @@
 			<div class="row">
 				<div class="col-xl-8 stretch-card grid-margin">
 					<div class="position-relative">
-					
-						<img src="<c:url value = '/template/web/images/banner.jpg'/>" alt="banner" class="img-fluid" />
+
+						<img src="<c:url value = '/template/web/images/banner.jpg'/>"
+							alt="banner" class="img-fluid" />
 						<div class="banner-content">
 							<div class="badge badge-danger fs-12 font-weight-bold mb-3">
 								global news</div>
@@ -46,36 +47,34 @@
 					<div class="card bg-dark text-white">
 						<div class="card-body">
 							<h2>Latest news</h2>
-							
+
 							<c:forEach var="item" items="${modelNewsTop3.listResult}">
 								<div
-                                        class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
-                                        <div class="pr-3 w-100">
-                                            <div class="row">
-                                                <div class="col-sm-7">
-                                                    <h5 class="title-last-news">
-                                                        <a class="text-white" href="/worldtime-1.0/home/news/${item.id}">
-                                                            ${item.title}
-                                                        </a>
-                                                    </h5>
-                                                    </a>
-                                                    <div class="fs-12 d-flex flex-column">
-                                                        <span class="mr-2 title-last-news">
-                                                            ${item.shortDescription}
-                                                        </span>10 Minutes ago
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-5">
-                                                    <div class="rotate-img w-75">
-                                                        <img src="/uploads/thumbnail/${item.thumbnail}"
-                                                            alt="thumb" class="img-fluid img-lg" />
-                                                    </div>
-                                                </div>
-                                            </div>
+									class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
+									<div class="pr-3 w-100">
+										<div class="row">
+											<div class="col-sm-7">
+												<h5 class="title-last-news">
+													<a class="text-white" href="/home/news/${item.id}">
+														${item.title} </a>
+												</h5>
+												</a>
+												<div class="fs-12 d-flex flex-column">
+													<span class="mr-2 title-last-news">
+														${item.shortDescription} </span>10 Minutes ago
+												</div>
+											</div>
+											<div class="col-sm-5">
+												<div class="rotate-img w-75">
+													<img src="/uploads/thumbnail/${item.thumbnail}" alt="thumb"
+														class="img-fluid img-lg" />
+												</div>
+											</div>
+										</div>
 
-                                        </div>
+									</div>
 
-                                    </div>
+								</div>
 							</c:forEach>
 
 						</div>
@@ -88,15 +87,15 @@
 						<div class="card-body">
 							<h2>Category</h2>
 							<ul class="vertical-menu">
-								<li><a href="/home/policy">Politics</a></li>
-								<li><a href="/home/business">Business</a></li>
+								<li><a href="/home/policy?page=1">Politics</a></li>
+								<li><a href="/home/business?page=1">Business</a></li>
 								<li><a href="#">Finance</a></li>
 								<li><a href="#">Health care</a></li>
 								<li><a href="#">Technology</a></li>
 								<li><a href="#">Jobs</a></li>
 								<li><a href="#">Media</a></li>
 								<li><a href="#">Administration</a></li>
-								<li><a href="/home/sport">Sports</a></li>
+								<li><a href="/home/sport?page=1">Sports</a></li>
 								<li><a href="#">Game</a></li>
 								<li><a href="#">Art</a></li>
 								<li><a href="#">Kids</a></li>
@@ -108,17 +107,20 @@
 					<div class="card">
 						<div class="card-body">
 							<c:forEach var="item" items="${model.listResult}">
-								<div class="row">							
+								<div class="row">
 									<div class="col-sm-4 grid-margin">
 										<div class="position-relative">
 											<div class="rotate-img">
-												<img src="${pageContext.request.contextPath}/uploads/thumbnail/${item.thumbnail}" alt="thumb"
-													class="img-fluid" />
+												<img
+													src="${pageContext.request.contextPath}/uploads/thumbnail/${item.thumbnail}"
+													alt="thumb" class="img-fluid" />
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-8  grid-margin">
-										<h2 class="mb-2 font-weight-600"><a href="/worldtime-1.0/home/news/${item.id}">${item.title}</a></h2>
+										<h2 class="mb-2 font-weight-600">
+											<a href="/home/news/${item.id}">${item.title}</a>
+										</h2>
 										<div class="fs-13 mb-2">
 											<span class="mr-2">${item.createdBy	}</span>10 Minutes ago
 										</div>
@@ -126,12 +128,32 @@
 									</div>
 								</div>
 							</c:forEach>
-						
+
 						</div>
 					</div>
 				</div>
 			</div>
-			
+			<div class="row">
+				<div class="col-lg-3 stretch-card grid-margin"></div>
+				<div
+					class="col-lg-9 stretch-card grid-margin d-fllex justify-content-center">
+					<div class="pagination">
+						<a href="/home?page=1" class="pagination-page">&laquo;</a>
+						<c:forEach var="i" begin="1" end="${model.totalPage}">
+							<c:if test="${model.categoryCode == null}">
+								<a href="/home?page=${i}" class="pagination-page-${i}"> ${i} </a>
+							</c:if>
+							<c:if test="${model.categoryCode != null}">
+								<a href="/home/${model.categoryCode}?page=${i}" class="pagination-page-${i}"> ${i} </a>
+							</c:if>
+						</c:forEach>
+						<a href="/home/?page=${model.totalPage}">&raquo;</a>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="page" value="${model.page}"> 
+			<input type="hidden" id="totalPage" value="${model.totalPage}">
+			<input type="hidden" id="category" value="${model.categoryCode}">
 		</div>
 	</div>
 </body>

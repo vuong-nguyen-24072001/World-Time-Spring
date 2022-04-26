@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <%@ page import="com.nguyenvuong.util.SecurityUtil" %>
 <c:url var="userAPI" value="/api/user" />
 <div class="content-login-signup">
     <div class="container">
-    	<c:if test="${param.userExist != null}">
-			<div class="alert alert-danger">Username Exist, please use another Username
-			</div>
-		</c:if>
-		<c:if test="${param.passwordNotMatch != null}">
-			<div class="alert alert-danger">Check your password</div>
-		</c:if>
+        <c:if test="${param.userExist != null}">
+            <div class="alert alert-danger">Username Exist, please use another Username
+            </div>
+        </c:if>
+        <c:if test="${param.passwordNotMatch != null}">
+            <div class="alert alert-danger">Check your password</div>
+        </c:if>
         <div class="row">
             <div class="col-md-6">
                 <img src="<c:url value = '/template/web/images/undraw_remotely_2j6y.svg'/>" alt="Image" class="img-fluid">
@@ -28,27 +28,27 @@
                             <div class="form-group first">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control" placeholder="username" id="userName"
-                                    name="userName" required>
+                                       name="userName" required>
 
                             </div>
                             <div class="form-group last mb-4">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" placeholder="password" id="password"
-                                    name="password" required>
+                                       name="password" required>
 
                             </div>
-                           
+
                             <div class="form-group last mb-4">
                                 <label for="repeatPassword">Confirm Password</label>
                                 <input type="password" class="form-control" placeholder="confirm password"
-                                    id="confirmPassword" required>
+                                       id="confirmPassword" required>
 
                             </div>
-                            
+
                             <div class="form-group last mb-4">
                                 <label for="fullName">Fullname</label>
                                 <input type="fullName" class="form-control" placeholder="full name" id="fullName"
-                                    name="fullName" required>
+                                       name="fullName" required>
 
                             </div>
 
@@ -85,52 +85,52 @@
 
 <script>
 
-	$('#btnSignUp').click(function(e) {
-		e.preventDefault();
-		var data = {};
-		var password = $('#password').val();
-		var confirmPassword = $('#confirmPassword').val();
-		if (password != confirmPassword) {
-			window.location.href = "/worldtime-1.0/signup?passwordNotMatch";
-		}
-		var formData = $('#formSignUp').serializeArray();
-		$.each(formData, function(i,v) {
-			data["" + v.name + ""] = v.value;
-		})
-		isUserExist(data);
-	})
-	
-	function createUser(data){
-	        	$.ajax({
-	                url: '${userAPI}',
-	                type: 'POST',
-	                contentType: 'application/json',
-	                data: JSON.stringify(data),
-	                dataType: 'json',
-	                success: function (result) {
-	                	window.location.href = "/worldtime-1.0/login";
-	                },
-	                error: function (error) {
-	                	window.location.href = "/worldtime-1.0/signup";
-	                }
-	            });
-	        }
-	function isUserExist(data) {
-		var url = '${userAPI}?username=' + data.userName;
-		$.ajax({
+    $('#btnSignUp').click(function(e) {
+        e.preventDefault();
+        var data = {};
+        var password = $('#password').val();
+        var confirmPassword = $('#confirmPassword').val();
+        if (password != confirmPassword) {
+            window.location.href = "/signup?passwordNotMatch";
+        }
+        var formData = $('#formSignUp').serializeArray();
+        $.each(formData, function(i,v) {
+            data["" + v.name + ""] = v.value;
+        })
+        isUserExist(data);
+    })
+
+    function createUser(data){
+        $.ajax({
+            url: '${userAPI}',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (result) {
+                window.location.href = "/login";
+            },
+            error: function (error) {
+                window.location.href = "/signup";
+            }
+        });
+    }
+    function isUserExist(data) {
+        var url = '${userAPI}?username=' + data.userName;
+        $.ajax({
             url: url,
             type: 'GET',
             success: function (result) {
-            	if (result.userName){
-            		console.log("duplicate user");
-            	} else {
-            		createUser(data);            		
-            	}
+                if (result.userName){
+                    console.log("duplicate user");
+                } else {
+                    createUser(data);
+                }
             },
             error: function (error) {
-            	console.log(error);
+                console.log(error);
             }
         });
-	} 
+    }
 
 </script>
